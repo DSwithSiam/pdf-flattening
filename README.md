@@ -4,11 +4,11 @@ A Python library for filling PDF forms, adding signatures, and converting PDFs t
 
 ## Features
 
-- ✅ Fill PDF form fields with data
-- ✅ Add signature images to PDFs
-- ✅ Convert PDFs to image-based format (fixes browser compatibility)
-- ✅ Remove signature widgets
-- ✅ Firefox & Safari compatibility fixes
+- Fill PDF form fields with data
+- Add signature images to PDFs
+- Convert PDFs to image-based format (fixes browser compatibility)
+- Remove signature widgets
+- Firefox & Safari compatibility fixes
 
 ## Installation
 
