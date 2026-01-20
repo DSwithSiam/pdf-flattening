@@ -12,14 +12,22 @@ A Python library for filling PDF forms, adding signatures, and converting PDFs t
 
 ## Installation
 
+### Option 1: Using requirements.txt (Recommended)
+
 ```bash
-pip install PyPDF2 PyMuPDF Pillow
+pip install -r requirements.txt
+```
+
+### Option 2: Manual Installation
+
+```bash
+pip install PyPDF2>=3.0.0 pymupdf>=1.23.0 Pillow>=10.0.0
 ```
 
 ### Required Dependencies
-- `PyPDF2` - PDF manipulation
-- `PyMuPDF` (fitz) - PDF rendering and image conversion
-- `Pillow` - Image processing
+- `PyPDF2` (>=3.0.0) - PDF manipulation and form filling
+- `PyMuPDF` (>=1.23.0) - PDF rendering, image conversion, and signature handling
+- `Pillow` (>=10.0.0) - Image processing and optimization
 
 ## Project Structure
 
@@ -30,7 +38,8 @@ pdf_problem solve/
 │   ├── fill_pdf.py          # PDF form filling
 │   ├── signature.py         # Signature handling
 │   └── render.py            # PDF to image conversion
-└── README.md
+├── requirements.txt         # Python dependencies
+└── README.md                # Documentation
 ```
 
 ## Usage
@@ -293,19 +302,40 @@ generate_final_pdf(
 ## Tips & Best Practices
 
 1. **PDF Form Fields**: Ensure your template PDF has properly named form fields
-2. **Signature Images**: Use PNG or JPG with transparent background for best results
-3. **DPI Settings**: Use 150 for screen viewing, 300 for printing
-4. **Quality**: Higher quality = larger file size. Balance based on use case
-5. **Cleanup**: Remove temporary files after generation for disk space
-
-## Troubleshooting
-
-### Form Fields Not Filling
-- Verify field names in PDF template match your `form_data` keys
-- Check PDF has AcroForm objects
+2. **Signature Images
+   - Use 72-150 DPI for screen viewing and web use
+   - Use 300 DPI for professional printing
+4. **Quality Settings**: 
+   - 50-65: Good for web/email (smaller file size)
+   - 75-85: Good for printing (balanced quality)
+   - 90-95: High quality (larger file size)
+5. **File Management**: Remove temporary files after generation to save disk space
+6. **Performance**: Process PDFs in batches for better efficiency with large volumese case
+5. **Clethat the PDF has AcroForm objects
+- Ensure PDF is not password protected or encrypted
+- Try opening the filled PDF in Adobe Acrobat Reader
 
 ### Signature Not Appearing
-- Ensure signature image file exists
+- Ensure signature image file exists and path is correct
+- Adjust `rect` coordinates to visible area of page
+- Verify the coordinates are within page boundaries
+- Verify first page exists if adjusting page index in `signature.py`
+- Check image format (PNG/JPG recommended)
+
+### Browser Display Issues
+- Use `render_pdf_as_image_pdf()` to convert to image format
+- This ensures maximum compatibility across all browsers
+- Some forms may not display properly in Chrome/Firefox without image conversion
+
+### Import Errors
+- Make sure all dependencies are installed: `pip install -r requirements.txt`
+- Check Python version compatibility (Python 3.7+)
+- Verify PyMuPDF is installed (not just fitz)
+
+### File Size Too Large
+- Reduce DPI (use 72-150 instead of 300)
+- Lower quality setting (use 50-65 instead of 85)
+- Compress images before adding as signatures
 - Adjust `rect` coordinates to visible area of page
 - Verify first page exists if adjusting page index in `signature.py`
 
